@@ -24,20 +24,21 @@ class Player(pygame.sprite.Sprite):
 
         if key[pygame.K_RIGHT]:
             self.rect.x += dt(dx)
-
+        game.tilemap.set_focus(self.rect.x, self.rect.y)
 class Game(object):
     def main(self, screen):
 
         clock = pygame.time.Clock()     # Game clock
 
         bg = pygame.image.load('data/images/bg.png')    # Load image file
-
+        print screen.get_size()
         self.tilemap = tmx.load('data/maps/intro.tmx', screen.get_size())
 
+        ## Load the UPC
         self.sprites = tmx.SpriteLayer()
         start_cell = self.tilemap.layers['triggers'].find('player')[0]
         self.player = Player((start_cell.px, start_cell.py), self.sprites)
-
+        self.tilemap.layers.append(self.sprites)
 
         ## Main game loop
         while True:
@@ -52,8 +53,9 @@ class Game(object):
                 if event.type == pygame.KEYDOWN and \
                         pygame.key.get_mods() & pygame.KMOD_CTRL and event.key == pygame.K_q:
                     return
-            self.tilemap.update(dt, self)
+
             screen.blit(bg, (0, 0))     # Shows the background image
+            self.tilemap.update(dt, self)
             self.tilemap.draw(screen)
             pygame.display.flip()   # Loads the image from memory
 

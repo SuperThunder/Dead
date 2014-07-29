@@ -11,7 +11,7 @@ class Game(object):
             clock.tick(30)
 
             for event in pygame.event.get():
-                ## If the player tries to quit the game, exit
+                ## If the playe tries to quit the game, exit
                 if event.type == pygame.QUIT:
                     return
 

@@ -9,9 +9,14 @@
   </data>
  </layer>
  <objectgroup name="triggers" width="300" height="300">
-  <object name="p-spawn" x="0" y="9536" width="32" height="32">
+  <object name="p-spawn" x="32" y="9472" width="32" height="32">
    <properties>
     <property name="player" value=""/>
+   </properties>
+  </object>
+  <object name="tlrb" x="0" y="9568" width="384" height="32">
+   <properties>
+    <property name="blockers" value="tlrb"/>
    </properties>
   </object>
  </objectgroup>

@@ -44,6 +44,8 @@ class Player(pygame.sprite.Sprite):
 
         self.direction = 0
 
+        self.is_dead = False
+
         self.gun_cooldown = 0       # Gun cooldown
 
     def update(self, dtim, game):
@@ -128,6 +130,12 @@ class Game(object):
                 if event.type == pygame.KEYDOWN and \
                         pygame.key.get_mods() & pygame.KMOD_CTRL and event.key == pygame.K_q:
                     return
+
+            if self.player.rect.y > self.tilemap.height * 32:
+                self.player.is_dead = True
+
+            if self.player.is_dead:
+                return
 
             screen.blit(bg, (0, 0))     # Shows the background image
             self.tilemap.update(dt, self)

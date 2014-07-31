@@ -25,7 +25,7 @@ class Bullet(pygame.sprite.Sprite):
             return
 
         self.rect.x += self.dx * dt(100)
-        self.rect.y += self.dy * dt(100)
+        self.rect.y += self.dy * float(dt(100))
 
        # if pygame.sprite.spritecollide(self, game.enemies, True):
        #     self.kill

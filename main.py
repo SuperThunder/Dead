@@ -13,6 +13,7 @@ class Bullet(pygame.sprite.Sprite):
         self.dx = float(x/y)
         self.dy = -1   # Bullet Direction
         self.lifespan = 1
+        self.l = location
 
 
     def update(self, dtim, game):
@@ -24,8 +25,10 @@ class Bullet(pygame.sprite.Sprite):
             self.kill()
             return
 
-        self.rect.x += self.dx * dt(100)
-        self.rect.y += self.dy * float(dt(100))
+        self.l = (self.l[0]+dt(self.dx * 100), self.l[1]+dt(self.dy * 100))
+        print self.l
+        self.rect.x += self.l[0]
+        self.rect.y += self.l[1]
 
        # if pygame.sprite.spritecollide(self, game.enemies, True):
        #     self.kill
